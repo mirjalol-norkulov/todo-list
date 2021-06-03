@@ -1,11 +1,12 @@
 <template>
   <div class="t-toggle-all">
     <input
-      v-model="innerValue"
+      :checked="value"
+      :value="value"
       type="checkbox"
       id="toggle-all"
       class="hidden"
-      @change="$emit('change', $event.value)"
+      @change="$emit('input', !value)"
     />
     <label for="toggle-all"></label>
   </div>
@@ -20,19 +21,25 @@ export default {
       default: false,
     },
   },
-  data() {
-    return {
-      innerValue: false,
-    };
-  },
-  watch: {
-    innerValue: {
-      immediate: true,
-      handler(value) {
-        this.$emit("input", value);
-      },
-    },
-  },
+  // data() {
+  //   return {
+  //     innerValue: false,
+  //   };
+  // },
+  // watch: {
+  //   value: {
+  //     immediate: true,
+  //     handler(value) {
+  //       this.innerValue = value;
+  //     },
+  //   },
+  //   innerValue: {
+  //     immediate: true,
+  //     handler(value) {
+  //       this.$emit("input", value);
+  //     },
+  //   },
+  // },
 };
 </script>
 

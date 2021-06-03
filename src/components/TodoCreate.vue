@@ -32,16 +32,18 @@ export default {
   data() {
     return {
       inputValue: "",
-      isAllCompleted: false,
     };
   },
   computed: {
     ...mapState(["todos"]),
     ...mapGetters(["hasTodos"]),
-  },
-  watch: {
-    isAllCompleted(value) {
-      this.toggleAllCompleted(value);
+    isAllCompleted: {
+      get() {
+        return this.$store.getters.isAllCompleted;
+      },
+      set(value) {
+        this.toggleAllCompleted(value);
+      },
     },
   },
   created() {

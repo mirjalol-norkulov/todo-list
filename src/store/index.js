@@ -30,6 +30,9 @@ export default new Vuex.Store({
           return state.todos.filter((todo) => todo.isCompleted);
       }
     },
+    isAllCompleted(state) {
+      return state.todos.every((todo) => todo.isCompleted);
+    },
   },
   mutations: {
     SET_FILTER(state, value) {
