@@ -24,14 +24,14 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from "vuex";
+import { mapGetters, mapMutations, mapState } from "vuex";
 import TInput from "@/components/ui/TInput";
 import TToggleAll from "../components/ui/TToggleAll";
 import TodoList from "../components/TodoList";
 import TodoFooter from "../components/TodoFooter";
 
-function createIdGenerator() {
-  let id = 1;
+function createIdGenerator(initial = 1) {
+  let id = initial;
   return function () {
     return id++;
   };
@@ -47,6 +47,7 @@ export default {
     };
   },
   computed: {
+    ...mapState(["todos"]),
     ...mapGetters(["hasTodos"]),
   },
   watch: {
@@ -54,12 +55,14 @@ export default {
       this.toggleAllCompleted(value);
     },
   },
+  created() {
+    this.generateId = createIdGenerator(this.todos.length + 1);
+  },
   methods: {
     ...mapMutations({
       addTodo: "ADD_TODO",
       toggleAllCompleted: "SET_ALL_TODOS_IS_COMPLETE",
     }),
-    generateId: createIdGenerator(),
     handleAddTodo() {
       const todo = {
         id: this.generateId(),

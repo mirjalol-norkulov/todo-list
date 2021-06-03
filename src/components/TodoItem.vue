@@ -12,7 +12,9 @@
       class="todo-item__text"
       @dblclick="handleActivateEdit"
     >
-      {{ todo.text }}
+      <span>
+        {{ todo.text }}
+      </span>
     </div>
     <input
       ref="input"
@@ -103,13 +105,17 @@ export default {
   border-t border-b select-none relative border-collapse border-gray;
 
   &__text {
-    @apply relative block text-black py-4 block flex-1;
-    &::after {
-      content: "";
-      @apply absolute top-1/2 left-1/2
-      transform -translate-x-1/2 -translate-y-1/2
-      w-full h-0.5 bg-gray-darker opacity-0 pointer-events-none
-      transition-all duration-300;
+    @apply block text-black py-4 block flex-1;
+
+    span {
+      @apply relative inline-block;
+      &::after {
+        content: "";
+        @apply absolute top-1/2 left-1/2
+        transform -translate-x-1/2 -translate-y-1/2
+        w-full h-0.5 bg-gray-darker opacity-0 pointer-events-none
+        transition-all duration-300;
+      }
     }
   }
 
@@ -137,8 +143,10 @@ export default {
     .todo-item__text {
       @apply text-gray-darker;
 
-      &::after {
-        @apply opacity-100 pointer-events-auto;
+      span {
+        &::after {
+          @apply opacity-100 pointer-events-auto;
+        }
       }
     }
   }
