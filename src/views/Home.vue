@@ -5,6 +5,11 @@
         todos
       </h1>
       <todo-app />
+
+      <div class="text-2xs text-center text-gray-medium mt-12 font-light">
+        <p class="my-1">Double-click to edit a todo</p>
+        <p>Written by Mirjalol Norkulov</p>
+      </div>
     </div>
   </div>
 </template>
