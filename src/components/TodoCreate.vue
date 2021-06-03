@@ -56,6 +56,9 @@ export default {
       toggleAllCompleted: "SET_ALL_TODOS_IS_COMPLETE",
     }),
     handleAddTodo() {
+      if (!this.inputValue) {
+        return;
+      }
       const todo = {
         id: this.generateId(),
         isCompleted: false,
