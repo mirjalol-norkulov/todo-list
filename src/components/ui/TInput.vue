@@ -57,7 +57,7 @@ export default {
 
 <style lang="scss">
 .t-input {
-  @apply flex items-center shadow-lg bg-white;
+  @apply flex items-center bg-white;
 
   &__input {
     @apply px-4 py-4 outline-none text-2xl text-black inline-block;

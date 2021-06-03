@@ -4,75 +4,17 @@
       <h1 class="text-8xl lowercase py-2 text-center text-primary-light">
         todos
       </h1>
-      <t-input
-        placeholder="What needs to be done?"
-        full-width
-        v-model="inputValue"
-        @keyup.native.enter="handleAddTodo"
-      >
-        <template slot="prefix">
-          <t-toggle-all
-            :class="{ 'opacity-0 pointer-events-none': !hasTodos }"
-            v-model="isAllCompleted"
-          />
-        </template>
-      </t-input>
-      <todo-list />
-      <todo-footer v-if="hasTodos" />
+      <todo-app />
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapMutations, mapState } from "vuex";
-import TInput from "@/components/ui/TInput";
-import TToggleAll from "../components/ui/TToggleAll";
-import TodoList from "../components/TodoList";
-import TodoFooter from "../components/TodoFooter";
-
-function createIdGenerator(initial = 1) {
-  let id = initial;
-  return function () {
-    return id++;
-  };
-}
+import TodoApp from "@/components/TodoApp";
 
 export default {
   name: "Home",
-  components: { TodoFooter, TodoList, TToggleAll, TInput },
-  data() {
-    return {
-      inputValue: "",
-      isAllCompleted: false,
-    };
-  },
-  computed: {
-    ...mapState(["todos"]),
-    ...mapGetters(["hasTodos"]),
-  },
-  watch: {
-    isAllCompleted(value) {
-      this.toggleAllCompleted(value);
-    },
-  },
-  created() {
-    this.generateId = createIdGenerator(this.todos.length + 1);
-  },
-  methods: {
-    ...mapMutations({
-      addTodo: "ADD_TODO",
-      toggleAllCompleted: "SET_ALL_TODOS_IS_COMPLETE",
-    }),
-    handleAddTodo() {
-      const todo = {
-        id: this.generateId(),
-        isCompleted: false,
-        text: this.inputValue,
-      };
-      this.addTodo(todo);
-      this.inputValue = "";
-    },
-  },
+  components: { TodoApp },
 };
 </script>
 
