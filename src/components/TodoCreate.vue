@@ -2,6 +2,7 @@
   <t-input
     placeholder="What needs to be done?"
     full-width
+    autofocus
     v-model="inputValue"
     @keyup.native.enter="handleAddTodo"
   >
