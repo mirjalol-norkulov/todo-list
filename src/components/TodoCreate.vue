@@ -16,12 +16,7 @@
 </template>
 
 <script>
-function createIdGenerator(initial = 1) {
-  let id = initial;
-  return function () {
-    return id++;
-  };
-}
+import { v4 as uuidv4 } from "uuid";
 
 import TInput from "@/components/ui/TInput";
 import TToggleAll from "@/components/ui/TToggleAll";
@@ -47,9 +42,6 @@ export default {
       },
     },
   },
-  created() {
-    this.generateId = createIdGenerator(this.todos.length + 1);
-  },
   methods: {
     ...mapMutations({
       addTodo: "ADD_TODO",
@@ -60,7 +52,7 @@ export default {
         return;
       }
       const todo = {
-        id: this.generateId(),
+        id: uuidv4(),
         isCompleted: false,
         text: this.inputValue,
       };
